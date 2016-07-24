@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ozark TODOs</title>
+  <link rel="stylesheet" type="text/css" href="/ozark.css"/>
+</head>
+<body>
+  <h1>Ozark TODOs</h1>
+  <h2>Create a new TODO</h2>
+  <form action="/r/todo" method="post">
+    <ul class="error">
+    {{#errors}}
+      <li>{{.}}</li>
+    {{/errors}}
+    </ul>
+    <input type="text" name="task" placeholder="What needs to be done?">
+    <input type="submit">
+  </form>
+</body>
+</html>
+
+
