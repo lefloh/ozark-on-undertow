@@ -1,0 +1,64 @@
+apply plugin: 'application'
+
+group = "de.utkast.ozark"
+version = '-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+ext {
+    undertowVersion = '1.3.23.Final'
+    weldVersion = '2.3.5.Final'
+    deltaspikeVersion = '1.7.1'
+    jerseyVersion = '2.23.1'
+    ozarkVersion = '1.0.0-m02'
+}
+
+sourceCompatibility = JavaVersion.VERSION_1_8
+targetCompatibility = JavaVersion.VERSION_1_8
+
+mainClassName = 'de.utkast.ozark.Main'
+applicationDefaultJvmArgs = [
+        "-Dorg.jboss.logging.provider=slf4j",
+        "-Dorg.slf4j.simpleLogger.log.org.jboss.weld=warn",
+//         "-Dorg.jboss.weld.development=true",
+        "-Djava.util.logging.config.file=src/main/resources/logging.properties"
+]
+
+dependencies {
+    compile group: 'org.glassfish.ozark', name: 'ozark', version: ozarkVersion
+    compile group: 'org.glassfish.ozark.ext', name: 'ozark-mustache', version: ozarkVersion
+
+    compile group: 'org.jboss.weld.se', name: 'weld-se', version: weldVersion
+
+    compile group: 'org.apache.deltaspike.cdictrl', name: 'deltaspike-cdictrl-weld', version: deltaspikeVersion
+
+    compile group: 'io.undertow', name: 'undertow-core', version: undertowVersion
+    compile group: 'io.undertow', name: 'undertow-servlet', version: undertowVersion
+
+    compile group: 'org.glassfish.jersey.core', name: 'jersey-server', version: jerseyVersion
+    compile group: 'org.glassfish.jersey.containers', name: 'jersey-container-servlet-core', version: jerseyVersion
+    compile group: 'org.glassfish.jersey.ext.cdi', name: 'jersey-cdi1x-servlet', version: jerseyVersion
+    compile group: 'org.glassfish.jersey.ext', name: 'jersey-bean-validation', version: jerseyVersion
+
+    compile group: 'org.slf4j', name: 'jul-to-slf4j', version: '1.7.21'
+    compile group: 'org.slf4j', name: 'slf4j-simple', version: '1.7.21'
+
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
+    testCompile group: 'net.sourceforge.htmlunit', name: 'htmlunit', version: '2.21'
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.12'
+}
+
+// to support gradle run - beans.xml must be in classes/ directory:
+def copyResourcesToClassesTask = task('copyResourcesToClasses', type: Copy) {
+    from 'build/resources/main'
+    into 'build/classes/main'
+}
+// task dependencies
+copyResourcesToClassesTask.mustRunAfter tasks.processResources
+tasks.classes.dependsOn copyResourcesToClassesTask
