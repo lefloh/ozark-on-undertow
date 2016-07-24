@@ -16,9 +16,7 @@ Very simple TODO application based on the great [standalone mvc example][standal
 
 # Try it
 
-```
 [http://localhost:8080](http://localhost:8080)
-```
 
  [libor]: https://github.com/shamoh
  [standalone]: https://github.com/shamoh/standalone-javax-mvc
