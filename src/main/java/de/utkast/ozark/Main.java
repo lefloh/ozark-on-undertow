@@ -105,8 +105,6 @@ public class Main {
     @ApplicationScoped
     public org.glassfish.jersey.servlet.ServletContainer createServletContainer() {
         final ResourceConfig resourceConfig = new ResourceConfig();
-        resourceConfig.register(TodoController.class);
-        resourceConfig.register(TodosController.class);
         resourceConfig.property("javax.mvc.engine.ViewEngine.viewFolder", "META-INF/views/");
         return new org.glassfish.jersey.servlet.ServletContainer(resourceConfig);
     }
