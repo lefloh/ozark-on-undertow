@@ -10,6 +10,7 @@ import io.undertow.servlet.api.ServletInfo;
 import org.apache.deltaspike.cdise.api.CdiContainer;
 import org.apache.deltaspike.cdise.api.CdiContainerLoader;
 import org.glassfish.jersey.server.ResourceConfig;
+import org.glassfish.ozark.servlet.OzarkContainerInitializer;
 import org.jboss.weld.servlet.WeldInitialListener;
 import org.jboss.weld.servlet.WeldTerminalListener;
 import org.slf4j.Logger;
@@ -71,6 +72,7 @@ public class Main {
                 .addServlet(
                         createServletInfo("/r/*", "JAX-RS Resources", org.glassfish.jersey.servlet.ServletContainer.class)
                 )
+                .addServletContextAttribute(OzarkContainerInitializer.APP_PATH_CONTEXT_KEY, "/r")
                 .addWelcomePage("index.html")
                 .setResourceManager(new ClassPathResourceManager(classLoader, "META-INF/webapp"))
                 .setClassIntrospecter(CdiClassIntrospecter.INSTANCE)

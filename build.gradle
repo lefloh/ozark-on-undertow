@@ -5,6 +5,9 @@ version = '-SNAPSHOT'
 
 repositories {
     mavenCentral()
+    maven {
+      url 'http://dl.bintray.com/mvc-spec/maven'
+    }
 }
 
 ext {
@@ -12,7 +15,8 @@ ext {
     weldVersion = '2.3.5.Final'
     deltaspikeVersion = '1.7.1'
     jerseyVersion = '2.23.1'
-    ozarkVersion = '1.0.0-m02'
+    mvcVersion = '20160715'
+    ozarkVersion = '20160715'
 }
 
 sourceCompatibility = JavaVersion.VERSION_1_8
@@ -27,6 +31,7 @@ applicationDefaultJvmArgs = [
 ]
 
 dependencies {
+    compile group: 'javax.mvc', name: 'javax.mvc-api', version: mvcVersion
     compile group: 'org.glassfish.ozark', name: 'ozark', version: ozarkVersion
     compile group: 'org.glassfish.ozark.ext', name: 'ozark-mustache', version: ozarkVersion
 
