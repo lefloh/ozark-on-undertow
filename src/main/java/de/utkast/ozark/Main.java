@@ -16,9 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.ApplicationScoped;
-import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Produces;
-import javax.mvc.annotation.RedirectScoped;
 import javax.servlet.Servlet;
 import javax.servlet.ServletException;
 
