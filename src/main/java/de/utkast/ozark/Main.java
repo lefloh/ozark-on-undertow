@@ -106,6 +106,7 @@ public class Main {
     public org.glassfish.jersey.servlet.ServletContainer createServletContainer() {
         final ResourceConfig resourceConfig = new ResourceConfig();
         resourceConfig.property("javax.mvc.engine.ViewEngine.viewFolder", "META-INF/views/");
+        resourceConfig.packages(this.getClass().getPackage().toString());
         return new org.glassfish.jersey.servlet.ServletContainer(resourceConfig);
     }
 
